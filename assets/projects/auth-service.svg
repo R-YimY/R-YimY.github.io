@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 720" width="1280" height="720" role="img" aria-label="auth-service architecture">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1220"/>
+      <stop offset="1" stop-color="#131b2e"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#22d3ee"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1b2438"/>
+      <stop offset="1" stop-color="#151d2f"/>
+    </linearGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="26" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5"
+            markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#22d3ee"/>
+    </marker>
+  </defs>
+
+  <rect width="1280" height="720" fill="url(#bg)"/>
+  <ellipse cx="190" cy="120" rx="330" ry="260" fill="#22d3ee" opacity="0.07" filter="url(#glow)"/>
+  <ellipse cx="1120" cy="640" rx="360" ry="280" fill="#7c3aed" opacity="0.10" filter="url(#glow)"/>
+
+  <g stroke="#ffffff" stroke-opacity="0.045" stroke-width="1">
+    <path d="M0 120H1280M0 240H1280M0 360H1280M0 480H1280M0 600H1280"/>
+    <path d="M160 0V720M320 0V720M480 0V720M640 0V720M800 0V720M960 0V720M1120 0V720"/>
+  </g>
+
+  <text x="72" y="106" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24"
+        font-weight="700" fill="#67e8f9" letter-spacing="2">MICROSERVICE</text>
+  <text x="70" y="186" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="62"
+        font-weight="800" fill="#f8fafc">auth-service</text>
+  <text x="72" y="236" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="24"
+        fill="#a8b6cc">OAuth2 / OIDC · multi-tenant · RBAC · audit log</text>
+
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif" text-anchor="middle">
+    <rect x="72" y="340" width="248" height="150" rx="18" fill="url(#node)" stroke="#2b3a55" stroke-width="2"/>
+    <text x="196" y="404" font-size="30" font-weight="700" fill="#e2e8f0">Client App</text>
+    <text x="196" y="444" font-size="19" fill="#8fa3bd">SPA / Mobile / CLI</text>
+
+    <rect x="516" y="300" width="248" height="230" rx="18" fill="#16283f" stroke="url(#accent)" stroke-width="3"/>
+    <text x="640" y="372" font-size="32" font-weight="800" fill="#ffffff">Auth Service</text>
+    <text x="640" y="412" font-size="19" fill="#9fd8ea">JWT · refresh tokens</text>
+    <text x="640" y="444" font-size="19" fill="#9fd8ea">RBAC · MFA</text>
+    <text x="640" y="476" font-size="19" fill="#9fd8ea">audit &amp; rate-limit</text>
+
+    <rect x="960" y="340" width="248" height="150" rx="18" fill="url(#node)" stroke="#2b3a55" stroke-width="2"/>
+    <text x="1084" y="404" font-size="30" font-weight="700" fill="#e2e8f0">Resource API</text>
+    <text x="1084" y="444" font-size="19" fill="#8fa3bd">protected data</text>
+  </g>
+
+  <g stroke="url(#accent)" stroke-width="3" fill="none" marker-end="url(#arrow)">
+    <path d="M320 415 H500" stroke-dasharray="10 8"/>
+    <path d="M772 415 H944"/>
+  </g>
+  <text x="410" y="392" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18"
+        fill="#7dd3fc" text-anchor="middle">1. authorize</text>
+  <text x="858" y="392" font-family="Segoe UI, Helvetica, Arial, sans-serif" font-size="18"
+        fill="#7dd3fc" text-anchor="middle">2. bearer token</text>
+
+  <g font-family="Segoe UI, Helvetica, Arial, sans-serif">
+    <rect x="72" y="576" width="150" height="46" rx="23" fill="#22d3ee" fill-opacity="0.12" stroke="#22d3ee" stroke-opacity="0.45"/>
+    <text x="147" y="606" font-size="19" font-weight="600" fill="#a5f3fc" text-anchor="middle">NestJS</text>
+
+    <rect x="238" y="576" width="196" height="46" rx="23" fill="#7c3aed" fill-opacity="0.14" stroke="#a78bfa" stroke-opacity="0.45"/>
+    <text x="336" y="606" font-size="19" font-weight="600" fill="#ddd6fe" text-anchor="middle">PostgreSQL</text>
+
+    <rect x="450" y="576" width="150" height="46" rx="23" fill="#38bdf8" fill-opacity="0.12" stroke="#38bdf8" stroke-opacity="0.45"/>
+    <text x="525" y="606" font-size="19" font-weight="600" fill="#bae6fd" text-anchor="middle">Docker</text>
+
+    <rect x="616" y="576" width="168" height="46" rx="23" fill="#34d399" fill-opacity="0.12" stroke="#34d399" stroke-opacity="0.45"/>
+    <text x="700" y="606" font-size="19" font-weight="600" fill="#a7f3d0" text-anchor="middle">OIDC</text>
+  </g>
+</svg>

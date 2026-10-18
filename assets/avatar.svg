@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 260" width="260" height="260" role="img" aria-label="Avatar placeholder">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#2563eb"/>
+      <stop offset="1" stop-color="#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="shine" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffffff" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#ffffff" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="260" height="260" rx="130" fill="url(#bg)"/>
+  <rect width="260" height="130" rx="130" fill="url(#shine)"/>
+
+  <!-- 头像剪影 -->
+  <circle cx="130" cy="104" r="40" fill="#ffffff" fill-opacity="0.92"/>
+  <path d="M56 224c8-38 38-60 74-60s66 22 74 60Z" fill="#ffffff" fill-opacity="0.92"/>
+
+  <!-- 品牌点缀 -->
+  <circle cx="196" cy="62" r="12" fill="#ffffff" fill-opacity="0.35"/>
+  <circle cx="64" cy="70" r="7" fill="#ffffff" fill-opacity="0.25"/>
+</svg>

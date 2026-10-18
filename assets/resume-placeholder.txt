@@ -1,0 +1,10 @@
+你的名字 · 简历占位文件 / Your Name · Resume Placeholder
+========================================================
+
+这是"下载简历"按钮的占位文件。
+请将 assets/resume.pdf(或 .docx)放入本目录,
+并把 index.html 中该按钮的 href 改为对应文件名即可。
+
+This is the placeholder for the "Download CV" button.
+Drop your resume (assets/resume.pdf / .docx) here and update
+the button href in index.html accordingly.

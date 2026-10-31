@@ -15,7 +15,7 @@ SITE.contributions = {
       year: "2026",
       title: { zh: "个人主页与作品集上线", en: "Portfolio and resume site launched" },
       desc: {
-        zh: "重构个人主页,系统整理三维重建、点云处理与视觉定位项目,并支持一键打印简历。",
+        zh: "系统整理三维重建、点云处理与视觉定位项目。",
         en: "Rebuilt the personal site to organize 3D reconstruction, point cloud, and visual localization work, with one-click resume printing."
       }
     },

@@ -23,7 +23,7 @@ SITE.experience = {
       org: { zh: "计算机视觉 / 三维重建", en: "Computer Vision / 3D Reconstruction" },
       location: { zh: "远程", en: "Remote" },
       summary: {
-        zh: "负责三维重建与视觉定位方向的算法研发和工程化落地,覆盖需求拆解、方案设计、C++ / Python 实现、数据评测与文档沉淀。",
+        zh: "负责三维重建与视觉定位方向的算法研发和工程化落地,覆盖需求拆解、方案设计、C++ / Python 实现、数据评测与知识沉淀。",
         en: "Own algorithm R&D and production delivery for 3D reconstruction and visual localization, from requirement scoping and solution design to C++/Python implementation, evaluation, and documentation."
       },
       highlights: [
@@ -58,12 +58,8 @@ SITE.experience = {
       },
       highlights: [
         {
-          zh: "维护 MVS-POLYFIT、Yours_Colmap、LineOptimize 等开源项目,覆盖点云单体化、稠密重建与多视角直线优化。",
-          en: "Maintain open-source projects including MVS-POLYFIT, Yours_Colmap, and LineOptimize, covering point cloud vectorization, dense reconstruction, and multi-view line optimization."
-        },
-        {
-          zh: "通过 GitHub 持续输出可复用的算法模块与工程实践,账号累计获得 140+ Stars。",
-          en: "Continuously publish reusable algorithm modules and engineering practices on GitHub, with 140+ stars across the account."
+          zh: "维护 MVS-POLYFIT 等开源项目,覆盖点云单体化与稠密重建。",
+          en: "Maintained open-source projects like MVS-POLYFIT for point cloud vectorization and dense reconstruction."
         }
       ],
       tags: ["Computer Vision", "3D Reconstruction", "C++", "Python"]

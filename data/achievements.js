@@ -22,12 +22,32 @@ SITE.achievements = {
       title: { zh: "专利", en: "Patents" },
       items: [
         {
-          zh: "一种基于多视图几何的三维重建方法 · 申请号待补充",
-          en: "A multi-view geometry based 3D reconstruction method · Application number TBD"
+          zh: "地图数据融合方法、装置、电子设备、存储介质及车辆 · 第一发明人 · 状态:实审",
+          en: "Map data fusion method, device, electronic device, storage medium, and vehicle · First Inventor · Status: under substantive examination"
         },
         {
-          zh: "一种点云矢量化处理方法 · 状态:申请中",
-          en: "A point cloud vectorization method · Status: under application"
+          zh: "点云数据处理方法、装置、电子设备及存储介质 · 第一发明人 · 状态:实审",
+          en: "A point cloud vectorization method · First Inventor · Status: under substantive examination"
+        },
+        {
+          zh: "路面模型的构建方法、装置、系统、设备及存储介质 · 第一发明人 · 状态:实审",
+          en: "A road surface model construction method, device, system, device, and storage medium · First Inventor · Status: under substantive examination"
+        },
+        {
+          zh: "共视匹配方法、装置、设备、存储介质及程序产品 · 第一发明人 · 状态:实审",
+          en: "A co-view matching method, device, equipment, storage medium, and program product · First Inventor · Status: under substantive examination"
+        },
+        {
+          zh: "多相机位姿的确定方法、装置、设备、车辆及存储介质 · 第一发明人 · 状态:实审",
+          en: "A method for determining the pose of multiple cameras, device, equipment, vehicle, and storage medium · First Inventor · Status: under substantive examination"
+        },
+        {
+          zh: "增量式三维重建的方法、装置、设备及存储介质 · 第一发明人 · 状态:实审",
+          en: "An incremental 3D reconstruction method, device, equipment, and storage medium · First Inventor· Status: under substantive examination"
+        },
+        {
+          zh: "基于单目相机的三维场景重建方法及装置 · 第一发明人 · 状态:实审",
+          en: "A 3D scene reconstruction method and device based on a monocular camera · First Inventor · Status: under substantive examination"
         }
       ]
     },
@@ -36,12 +56,8 @@ SITE.achievements = {
       title: { zh: "论文", en: "Publications" },
       items: [
         {
-          zh: "论文标题待补充 · 期刊 / 会议待补充 · 年份待补充",
-          en: "Paper title TBD · Journal / Conference TBD · Year TBD"
-        },
-        {
-          zh: "论文标题待补充 · 状态:撰写中",
-          en: "Paper title TBD · Status: in preparation"
+          zh: "AnchorReF: A novel anchor-based visual re-localization framework aided by multi-sensor data fusion ·co-author · ISPRS · 2026",
+          en: "AnchorReF: A novel anchor-based visual re-localization framework aided by multi-sensor data fusion · co-author · ISPRS · 2026"
         }
       ]
     },
@@ -53,10 +69,7 @@ SITE.achievements = {
           zh: "亚太数学竞赛二等奖 · 2020",
           en: "Second Prize, Asia-Pacific Mathematics Competition · 2020"
         },
-        {
-          zh: "竞赛名称待补充 · 奖项待补充 · 年份待补充",
-          en: "Competition name TBD · Award TBD · Year TBD"
-        }
+
       ]
     },
     {

@@ -8,7 +8,7 @@ window.SITE = window.SITE || {};
 
 SITE.hero = {
   /* 头像图片路径 */
-  avatar: "assets/avatar.svg",
+  avatar: "assets/avatar.jpg",
   /* 头像替代文字(读屏用) */
   avatarAlt: { zh: "Ranyu (YIMY) 的头像", en: "Ranyu (YIMY) avatar" },
 

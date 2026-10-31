@@ -950,46 +950,97 @@ html[data-theme="dark"] .icon-sun { display: none; }
 .achieve-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-auto-rows: 1fr;
-  gap: 22px;
+  align-items: start;
+  gap: 18px;
 }
 .achieve-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  height: 100%;
-  min-height: 180px;
+  max-height: 244px;
   background: var(--surface);
   border: 1px solid var(--border);
   border-top: 3px solid var(--brand);
   border-radius: var(--radius);
-  padding: 24px;
+  padding: 16px 20px 12px;
   box-shadow: var(--shadow-sm);
-  transition: transform 0.2s ease, box-shadow 0.25s ease;
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.25s ease;
 }
-.achieve-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.achieve-card:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: var(--shadow);
+}
 .achieve-card h3 {
   display: flex;
   align-items: center;
-  gap: 10px;
-  font-size: 1.05rem;
-  margin-bottom: 14px;
+  gap: 8px;
+  flex: 0 0 auto;
+  font-size: 0.98rem;
+  margin: 0 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid var(--border);
 }
-.achieve-icon { font-size: 1.25rem; }
-.achieve-card ul { flex: 1; display: grid; align-content: start; gap: 11px; }
+.achieve-icon { font-size: 1.05rem; }
+.achieve-hint {
+  margin-left: auto;
+  font-size: 0.78rem;
+  font-weight: 400;
+  color: var(--text-muted);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.achieve-card.is-scrollable .achieve-hint { opacity: 0.7; }
+
+/* 可上下滑动的条目区域 */
+.achieve-scroll {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+  scrollbar-gutter: stable;
+  -webkit-overflow-scrolling: touch;
+  padding: 2px 6px 10px 2px;
+}
+.achieve-scroll::-webkit-scrollbar { width: 6px; }
+.achieve-scroll::-webkit-scrollbar-track { background: transparent; }
+.achieve-scroll::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 999px;
+}
+.achieve-scroll:hover::-webkit-scrollbar-thumb { background: var(--brand); }
+.achieve-scroll ul { display: grid; align-content: start; gap: 9px; }
 .achieve-card li {
   position: relative;
-  padding-left: 20px;
+  padding-left: 16px;
   color: var(--text-soft);
-  font-size: 0.93rem;
+  font-size: 0.87rem;
+  line-height: 1.55;
 }
 .achieve-card li::before {
   content: "";
   position: absolute;
-  left: 2px; top: 0.62em;
-  width: 7px; height: 7px;
+  left: 1px; top: 0.55em;
+  width: 6px; height: 6px;
   border-radius: 50%;
   background: var(--brand);
 }
+
+/* 还有内容可滚动时,底部渐隐提示 */
+.achieve-card::after {
+  content: "";
+  position: absolute;
+  left: 1px; right: 1px; bottom: 1px;
+  height: 34px;
+  border-radius: 0 0 var(--radius) var(--radius);
+  background: linear-gradient(to bottom, transparent, var(--surface) 78%);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+.achieve-card.is-scrollable:not(.at-end)::after { opacity: 1; }
 
 /* -------------------- 联系方式 -------------------- */
 .contact-grid {
@@ -1148,8 +1199,8 @@ html[data-theme="dark"] .icon-sun { display: none; }
 @media (max-width: 760px) {
   .btn-print { width: 38px; min-width: 38px; padding: 0; }
   .btn-print-text { display: none; }
-  .achieve-grid { grid-template-columns: 1fr; grid-auto-rows: auto; }
-  .achieve-card { min-height: 0; }
+  .achieve-grid { grid-template-columns: 1fr; gap: 14px; }
+  .achieve-card { max-height: 232px; }
   .nav-toggle { display: inline-flex; }
   .nav {
     position: fixed;
@@ -1330,7 +1381,8 @@ html[data-theme="dark"] .icon-sun { display: none; }
   .achieve-grid { display: block; }
   .achieve-card {
     display: block;
-    min-height: 0;
+    height: auto;
+    max-height: none;
     padding: 8px 0;
     border: 0;
     border-bottom: 1px solid #e5e5e5;
@@ -1339,7 +1391,9 @@ html[data-theme="dark"] .icon-sun { display: none; }
     break-inside: avoid;
   }
   .achieve-card:hover { transform: none; box-shadow: none; }
-  .achieve-card h3 { font-size: 11pt; margin-bottom: 6px; }
+  .achieve-card h3 { font-size: 11pt; margin-bottom: 6px; padding-bottom: 0; border-bottom: 0; }
+  .achieve-scroll { overflow: visible; padding: 0; scrollbar-gutter: auto; }
+  .achieve-hint, .achieve-card::after { display: none; }
   .achieve-card li { color: #222; font-size: 9.8pt; }
 
   .contact-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }

@@ -29,6 +29,7 @@
     }
     try { localStorage.setItem(STORAGE_LANG, lang); } catch (e) {}
     if (typeof refreshMediaLabels === "function") refreshMediaLabels(lang);
+    if (typeof syncAchieveScroll === "function") syncAchieveScroll();
   }
 
   function mediaAlt(img, lang) {
@@ -314,7 +315,37 @@
   }
 
   /* ---------------------------------------------------------
-     8c. 打印 / 导出 PDF
+     8c. 知识成果 · 上下滑动区域状态
+     ---------------------------------------------------------
+     内容超过卡片高度时,给卡片加 is-scrollable(显示滑动提示与
+     底部渐隐),滑到底部时加 at-end(隐藏渐隐)。
+     --------------------------------------------------------- */
+  var achieveScrolls = document.querySelectorAll(".achieve-scroll");
+
+  function syncAchieveScroll() {
+    Array.prototype.forEach.call(achieveScrolls, function (box) {
+      var card = box.closest ? box.closest(".achieve-card") : null;
+      if (!card) return;
+      var max = box.scrollHeight - box.clientHeight;
+      var scrollable = max > 2;
+      card.classList.toggle("is-scrollable", scrollable);
+      card.classList.toggle("at-end", !scrollable || box.scrollTop >= max - 2);
+    });
+  }
+
+  Array.prototype.forEach.call(achieveScrolls, function (box) {
+    box.addEventListener("scroll", syncAchieveScroll, { passive: true });
+  });
+
+  window.addEventListener("resize", syncAchieveScroll);
+  window.addEventListener("load", syncAchieveScroll);
+  window.requestAnimationFrame(syncAchieveScroll);
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(syncAchieveScroll).catch(function () {});
+  }
+
+  /* ---------------------------------------------------------
+     8d. 打印 / 导出 PDF
      --------------------------------------------------------- */
   Array.prototype.forEach.call(
     document.querySelectorAll('[data-action="print"]'),

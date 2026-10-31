@@ -360,17 +360,21 @@
     var a = S.achievements;
     if (!a) return;
 
-    var groups = (a.groups || []).map(function (g) {
+    var groups = (a.groups || []).map(function (g, gi) {
       var items = (g.items || []).map(function (i) {
         return "<li>" + bi(i) + "</li>";
       }).join("");
+      var headingId = "achieve-group-" + gi;
       return (
         '<article class="achieve-card reveal">' +
-          "<h3>" +
+          '<h3 id="' + headingId + '">' +
             (g.icon ? '<span class="achieve-icon" aria-hidden="true">' + esc(g.icon) + "</span> " : "") +
             bi(g.title) +
+            '<span class="achieve-hint" aria-hidden="true">\u2195</span>' +
           "</h3>" +
-          "<ul>" + items + "</ul>" +
+          '<div class="achieve-scroll" tabindex="0" role="region" aria-labelledby="' + headingId + '">' +
+            "<ul>" + items + "</ul>" +
+          "</div>" +
         "</article>"
       );
     }).join("");

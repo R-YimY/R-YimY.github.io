@@ -1,59 +1,113 @@
+# Ranyu (YIMY) · Portfolio
 
-### <div align="center">Hello, I'm YIMY 👨‍💻 </div>  
-  
+Personal homepage and resume-style portfolio of **Ranyu (YIMY)** — a computer vision engineer focused on 3D reconstruction, point cloud processing, and visual localization.
 
-- 🔭 I’m currently working on [Github Profilinator](https://github.com/rishavanand/github-profilinator)  
-  
+**Live site:** https://r-yimy.github.io/
 
-- 🌱 I’m currently learning Visual Reconstrction 
-  
+## Highlights
 
+- Resume-oriented structure: summary, experience, featured projects, open-source impact, achievements, and contact.
+- Fully bilingual (Chinese / English) with persisted language preference.
+- Light / dark theme with system preference detection.
+- Data-driven content: update `data/*.js` without touching layout code.
+- Project cards with role, timeline, technical highlights, tags, and external links.
+- Image lightbox, lazy loading, and a graceful missing-image fallback.
+- One-click **Print Resume** action with dedicated print styles for A4 / PDF export.
+- SEO metadata (Open Graph, Twitter Card, JSON-LD), accessible navigation, skip link, and reduced-motion support.
+- Deployed as a static site on GitHub Pages — no build step required.
 
-- ⚡ Work : working remotely since 2023 🚀
-  
+## Tech Stack
 
-<br/>  
+- HTML5
+- CSS3 (custom properties, responsive layout, print media queries)
+- Vanilla JavaScript (no framework, no bundler)
+- GitHub Pages
 
+## Project Structure
 
-## My Skill Set  
-<table><tr><td valign="top" width="33%">
+```text
+.
+├── index.html              # Page shell, navigation, SEO metadata
+├── css/
+│   └── style.css           # Theme, layout, responsive and print styles
+├── js/
+│   ├── render.js           # Renders sections from data/ configuration
+│   └── main.js             # Language, theme, navigation, lightbox, print
+├── data/
+│   ├── site.js             # Site title, brand, footer
+│   ├── hero.js             # Hero summary, highlights, socials
+│   ├── about.js            # Bio, quick facts, skills
+│   ├── experience.js       # Work / research experience and education
+│   ├── projects.js         # Featured projects and additional repositories
+│   ├── contributions.js    # Horizontal open-source contribution timeline
+│   ├── achievements.js     # Patents, publications, competitions, research focus
+│   └── contact.js          # Contact channels
+└── assets/                 # Avatar, favicon, project images
+```
 
+## Local Development
 
+The site is fully static. Start any local HTTP server from the project root:
 
-### Frontend  
-<div align="center">  
-<a href="https://www.cplusplus.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/cplusplus-original.svg" alt="C++" height="50" /></a>  
-<a href="https://www.cprogramming.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/c-original.svg" alt="C" height="50" /></a>  
-<a href="https://www.python.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/python-original.svg" alt="Python" height="50" /></a>  
-<a href="https://opencv.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/opencv-icon.svg" alt="OpenCV" height="50" /></a>  
-<a href="https://www.docker.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/docker-original-wordmark.svg" alt="Docker" height="50" /></a>  
-</div>
+```bash
+# Python 3
+python -m http.server 8000
 
-</td><td valign="top" width="33%">
+# or Node.js
+npx serve .
+```
 
+Then open `http://localhost:8000`.
 
+> Opening `index.html` directly also works in most browsers, but a local server is recommended to avoid file:// restrictions.
 
-### Backend  
-<div align="center">  
-<a href="https://www.cplusplus.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/cplusplus-original.svg" alt="C++" height="50" /></a>  
-<a href="https://www.linux.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/linux-original.svg" alt="Linux" height="50" /></a>  
-<a href="https://www.python.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/python-original.svg" alt="Python" height="50" /></a>  
-<a href="https://github.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/git-scm-icon.svg" alt="Git" height="50" /></a>  
-</div>
+## Editing Content
 
-</td><td valign="top" width="33%">
+All page content lives in `data/`. Each file exposes a `SITE.<section>` object:
 
+```js
+SITE.projects = {
+  kicker: "03",
+  title: { zh: "重点项目", en: "Featured Projects" },
+  items: [
+    {
+      name: "MVS-Polyfit",
+      role: { zh: "核心开发", en: "Core Developer" },
+      period: "2023",
+      desc: { zh: "…", en: "…" },
+      highlights: [{ zh: "…", en: "…" }],
+      tags: ["C++", "MVS"],
+      links: [{ label: "GitHub ↗", href: "https://github.com/R-YimY/MVS-POLYFIT" }]
+    }
+  ]
+};
+```
 
+- Bilingual text uses `{ zh: "中文", en: "English" }`.
+- Simple HTML is supported in descriptive fields.
+- Add or remove sections by editing `index.html` and the renderer in `js/render.js`.
 
-### DevOps  
-<div align="center">  
-<a href="https://www.linux.org/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/linux-original.svg" alt="Linux" height="50" /></a>  
-<a href="https://github.com/" target="_blank"><img style="margin: 10px" src="https://profilinator.rishav.dev/skills-assets/git-scm-icon.svg" alt="Git" height="50" /></a>  
-</div>
+## Resume / PDF Export
 
-</td></tr></table>  
+Click **打印简历 / Print Resume** in the top navigation bar, or press `Ctrl/Cmd + P`:
 
-<br/>  
+- Navigation, avatars, buttons, and project images are hidden automatically.
+- The contribution timeline is flattened into a full-width stacked list.
+- Sections are compacted into a clean, A4-friendly resume layout.
+- Choose **Save as PDF** in the browser print dialog.
 
-----
-<div align="center">Generated using <a href="https://profilinator.rishav.dev/" target="_blank">Github Profilinator</a></div>
+## Deployment
+
+The repository is configured for GitHub Pages:
+
+1. Push changes to the `main` branch.
+2. In **Settings → Pages**, use **Deploy from a branch** with `main` / root.
+3. The site is published at `https://r-yimy.github.io/`.
+
+The `.nojekyll` file disables Jekyll processing so static assets are served as-is.
+
+## Contact
+
+- GitHub: [@R-YimY](https://github.com/R-YimY)
+- Email: [1547823315@qq.com](mailto:1547823315@qq.com)
+- Website: https://r-yimy.github.io/

@@ -1,6 +1,6 @@
 /* =========================================================
    你的名字 · 个人主页 / Personal Homepage
-   交互脚本:语言切换 / 主题切换 / 导航 / 滚动动画 / 数字滚动
+   交互脚本:语言切换 / 主题切换 / 导航 / 滚动动画 / 灯箱 / 打印
    ========================================================= */
 (function () {
   "use strict";
@@ -176,50 +176,7 @@
   }
 
   /* ---------------------------------------------------------
-     7. 统计数字滚动
-     --------------------------------------------------------- */
-  var counters = document.querySelectorAll(".stat-num[data-count]");
-
-  function runCounter(el) {
-    var target = parseInt(el.getAttribute("data-count"), 10) || 0;
-    var duration = 1400;
-    var start = null;
-
-    function step(ts) {
-      if (start === null) start = ts;
-      var p = Math.min((ts - start) / duration, 1);
-      // easeOutCubic
-      var eased = 1 - Math.pow(1 - p, 3);
-      el.textContent = Math.round(target * eased);
-      if (p < 1) requestAnimationFrame(step);
-      else el.textContent = target;
-    }
-    requestAnimationFrame(step);
-  }
-
-  if (counters.length) {
-    if ("IntersectionObserver" in window) {
-      // HTML 内为真实数值(无 JS 时可见),进入视口前先归零再滚动计数
-      Array.prototype.forEach.call(counters, function (el) {
-        el.textContent = "0";
-      });
-      var cObs = new IntersectionObserver(
-        function (entries, obs) {
-          entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-              runCounter(entry.target);
-              obs.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.4 }
-      );
-      counters.forEach(function (el) { cObs.observe(el); });
-    }
-  }
-
-  /* ---------------------------------------------------------
-     8. 项目图片灯箱 (点击放大)
+     7. 项目图片灯箱 (点击放大)
      --------------------------------------------------------- */
   var lightbox = document.getElementById("lightbox");
   var lightboxImg = document.getElementById("lightbox-img");
@@ -355,6 +312,16 @@
       if (e.key === "Escape") closeLightbox();
     });
   }
+
+  /* ---------------------------------------------------------
+     8c. 打印 / 导出 PDF
+     --------------------------------------------------------- */
+  Array.prototype.forEach.call(
+    document.querySelectorAll('[data-action="print"]'),
+    function (btn) {
+      btn.addEventListener("click", function () { window.print(); });
+    }
+  );
 
   /* ---------------------------------------------------------
      初始化

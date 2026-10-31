@@ -104,19 +104,19 @@
     var h = S.hero;
     if (!h) return;
 
-    var actions = (h.actions || []).map(function (a) {
-      return (
-        '<a class="btn btn-' + esc(a.variant || "primary") + '" href="' + esc(a.href) + '"' +
-          (a.download ? " download" : "") + linkAttrs(a.href) + ">" +
-          bi(a.label) +
-        "</a>"
-      );
-    }).join("");
-
     var socials = (h.socials || []).map(function (s) {
       return (
         "<li><a href=\"" + esc(s.href) + "\"" + linkAttrs(s.href) +
           ' aria-label="' + esc(s.label) + '">' + esc(s.label) + "</a></li>"
+      );
+    }).join("");
+
+    var stats = (h.highlights || []).map(function (s) {
+      return (
+        '<li class="hero-stat">' +
+          '<span class="hero-stat-value">' + esc(s.value) + "</span>" +
+          '<span class="hero-stat-label">' + bi(s.label) + "</span>" +
+        "</li>"
       );
     }).join("");
 
@@ -127,7 +127,7 @@
           (h.nameEn ? ' <span class="hero-name-en">' + esc(h.nameEn) + "</span>" : "") + "</h1>" +
         '<p class="hero-title">' + bi(h.title) + "</p>" +
         '<p class="hero-desc">' + bi(h.desc) + "</p>" +
-        (actions ? '<div class="hero-links">' + actions + "</div>" : "") +
+        (stats ? '<ul class="hero-stats" aria-label="Highlights">' + stats + "</ul>" : "") +
         (socials ? '<ul class="social" aria-label="Social links">' + socials + "</ul>" : "") +
       "</div>" +
       '<div class="hero-visual reveal">' +
@@ -181,6 +181,54 @@
     render("about-root", html);
   }
 
+  /* -------------------- 工作与研究经历 -------------------- */
+  function renderExperience() {
+    var e = S.experience;
+    if (!e) return;
+
+    function typeLabel(type) {
+      return type === "education"
+        ? { zh: "教育", en: "Education" }
+        : { zh: "工作", en: "Work" };
+    }
+
+    var items = (e.items || []).map(function (it) {
+      var highlights = (it.highlights || []).map(function (h) {
+        return "<li>" + bi(h) + "</li>";
+      }).join("");
+
+      var tags = (it.tags || []).length
+        ? '<ul class="card-tags exp-tags">' + it.tags.map(function (t) {
+            return "<li>" + esc(t) + "</li>";
+          }).join("") + "</ul>"
+        : "";
+
+      var type = it.type === "education" ? "education" : "work";
+
+      return (
+        '<article class="exp-item reveal">' +
+          '<div class="exp-meta">' +
+            '<span class="exp-period">' + esc(it.period) + "</span>" +
+            '<span class="exp-type exp-type-' + type + '">' + bi(typeLabel(type)) + "</span>" +
+          "</div>" +
+          '<div class="exp-main">' +
+            '<header class="exp-head">' +
+              "<h3>" + bi(it.role) + "</h3>" +
+              '<p class="exp-org">' + bi(it.org) +
+                (it.location ? ' · ' + bi(it.location) : "") +
+              "</p>" +
+            "</header>" +
+            (it.summary ? '<p class="exp-summary">' + bi(it.summary) + "</p>" : "") +
+            (highlights ? '<ul class="exp-highlights">' + highlights + "</ul>" : "") +
+            tags +
+          "</div>" +
+        "</article>"
+      );
+    }).join("");
+
+    render("experience-root", head(e) + '<div class="exp-list">' + items + "</div>");
+  }
+
   /* -------------------- 主要项目 -------------------- */
   function cardMedia(image, projectName) {
     if (!image || !image.src) return "";
@@ -213,6 +261,19 @@
     if (!p) return;
 
     var cards = (p.items || []).map(function (it) {
+      var meta = [];
+      if (it.role) meta.push('<span class="card-meta-item">' + bi(it.role) + "</span>");
+      if (it.period) meta.push('<span class="card-meta-item">' + esc(it.period) + "</span>");
+      var metaHtml = meta.length
+        ? '<p class="card-meta">' + meta.join('<span class="dot" aria-hidden="true">·</span>') + "</p>"
+        : "";
+
+      var highlights = (it.highlights || []).length
+        ? '<ul class="card-highlights">' + it.highlights.map(function (h) {
+            return "<li>" + bi(h) + "</li>";
+          }).join("") + "</ul>"
+        : "";
+
       var tags = (it.tags || []).length
         ? '<ul class="card-tags">' + it.tags.map(function (t) {
             return "<li>" + esc(t) + "</li>";
@@ -231,15 +292,40 @@
               (it.emoji ? '<span class="card-emoji" aria-hidden="true">' + esc(it.emoji) + "</span>" : "") +
               '<h3 class="card-title">' + esc(it.name) + "</h3>" +
             "</div>" +
+            metaHtml +
             '<p class="card-desc">' + bi(it.desc) + "</p>" +
+            highlights +
             tags +
-            (links ? '<div class="card-links">' + links + "</div>" : "") +
+            '<div class="card-links">' + links + "</div>" +
           "</div>" +
         "</article>"
       );
     }).join("");
 
-    render("projects-root", head(p) + '<div class="cards">' + cards + "</div>");
+    var more = "";
+    if (p.more && (p.more.items || []).length) {
+      var moreItems = p.more.items.map(function (m) {
+        var bg = m.image || "assets/projects/placeholder.svg";
+        return (
+          '<li><a class="more-card" href="' + esc(m.href) + '"' + linkAttrs(m.href) + ">" +
+            '<span class="more-bg" aria-hidden="true" style="background-image:url(&quot;' +
+              esc(bg) + '&quot;)"></span>' +
+            '<span class="more-body">' +
+              '<span class="more-name">' + esc(m.name) + "</span>" +
+              '<span class="more-desc">' + bi(m.desc) + "</span>" +
+            "</span>" +
+            '<span class="more-arrow" aria-hidden="true">\u2197</span>' +
+          "</a></li>"
+        );
+      }).join("");
+      more =
+        '<div class="more-projects reveal">' +
+          "<h3>" + bi(p.more.title || { zh: "更多开源项目", en: "More Open Source" }) + "</h3>" +
+          "<ul>" + moreItems + "</ul>" +
+        "</div>";
+    }
+
+    render("projects-root", head(p) + '<div class="cards">' + cards + "</div>" + more);
   }
 
   /* -------------------- 开源贡献 -------------------- */
@@ -247,22 +333,15 @@
     var c = S.contributions;
     if (!c) return;
 
-    var stats = (c.stats || []).map(function (s) {
-      var v = esc(s.value);
-      return (
-        '<div class="stat">' +
-          '<span class="stat-num" data-count="' + v + '">' + v + "</span>" +
-          '<span class="stat-label">' + bi(s.label) + "</span>" +
-        "</div>"
-      );
-    }).join("");
-
     var timeline = (c.timeline || []).map(function (t) {
       return (
         '<article class="timeline-item">' +
           '<p class="timeline-meta">' + esc(t.year) + "</p>" +
-          "<h3>" + bi(t.title) + "</h3>" +
-          "<p>" + bi(t.desc) + "</p>" +
+          '<span class="timeline-dot" aria-hidden="true"></span>' +
+          '<div class="timeline-card">' +
+            "<h3>" + bi(t.title) + "</h3>" +
+            "<p>" + bi(t.desc) + "</p>" +
+          "</div>" +
         "</article>"
       );
     }).join("");
@@ -270,8 +349,9 @@
     render(
       "contributions-root",
       head(c) +
-        (stats ? '<div class="stat-row reveal">' + stats + "</div>" : "") +
-        (timeline ? '<div class="timeline reveal">' + timeline + "</div>" : "")
+        (timeline
+          ? '<div class="timeline-wrap reveal"><div class="timeline">' + timeline + "</div></div>"
+          : "")
     );
   }
 
@@ -321,6 +401,7 @@
     renderSite();
     renderHero();
     renderAbout();
+    renderExperience();
     renderProjects();
     renderContributions();
     renderAchievements();

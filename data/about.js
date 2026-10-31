@@ -14,12 +14,12 @@ SITE.about = {
   /* 自我介绍段落,可写多段;支持简单 HTML(如 <strong>) */
   paragraphs: [
     {
-      zh: "我是一名拥有多年经验的计算机视觉/三维重建工程师,技术语言在 <strong>Python</strong> 与 <strong>C++</strong> 之间。重点关注前言视觉三维架构,并坚持用实际数据的测试和算法文档保障开发流程。",
-      en: "I'm a computer vision/3D reconstruction engineer with several years of experience, working daily across <strong>Python</strong> and <strong>C++</strong>. I focus on cutting-edge 3D vision architectures and ensure development processes are supported by real-world data testing and algorithmic documentation."
+      zh: "我是一名计算机视觉 / 三维重建工程师,拥有 3 年以上算法研发与工程化经验,日常工作横跨 <strong>Python</strong> 与 <strong>C++</strong>。我关注多视图几何、密集匹配点云处理、点云矢量化和纯视觉定位,并习惯用真实数据评测、可复现实验和算法文档来保证交付质量。",
+      en: "I'm a computer vision and 3D reconstruction engineer with 3+ years of algorithm development and production experience, working across <strong>Python</strong> and <strong>C++</strong>. I focus on multi-view geometry, dense point cloud processing, point cloud vectorization, and visual localization, and I rely on real-world evaluation, reproducible experiments, and clear algorithm documentation to ensure delivery quality."
     },
     {
-      zh: "工作之余,对有趣的开源项目感兴趣,上传自己的代码,并在社区分享云原生与工程实践。我相信开源是一种协作方式,也是一种学习方法。",
-      en: "Outside of work I'm interested in interesting open-source projects, upload my own code, and share cloud-native and engineering practices with the community. I believe open source is both a way to collaborate and a way to learn."
+      zh: "我习惯把复杂问题拆解为可验证的模块:先定义输入输出与评价指标,再逐步实现几何求解、工程优化和异常兜底。工作之余,我会把可复用的组件整理成开源项目,并在社区分享三维重建与工程实践。",
+      en: "I like to break complex problems into verifiable modules: define inputs, outputs, and metrics first, then implement geometric solvers, engineering optimizations, and failure handling step by step. Outside of work I turn reusable components into open-source projects and share 3D reconstruction and engineering practices with the community."
     }
   ],
 
@@ -27,7 +27,8 @@ SITE.about = {
   facts: [
     { label: { zh: "所在地", en: "Location" }, value: { zh: "中国 · 重庆", en: "ChongQing, China" } },
     { label: { zh: "经验", en: "Experience" }, value: { zh: "3+ 年", en: "3+ years" } },
-    { label: { zh: "关注领域", en: "Focus" }, value: { zh: "三维重建·视觉定位·图像处理·工程化优化", en: "3D Reconstruction · Visual Localization · Image Processing · Engineering Optimization" } }
+    { label: { zh: "关注领域", en: "Focus" }, value: { zh: "三维重建 · 视觉定位 · 点云处理", en: "3D Reconstruction · Visual Localization · Point Clouds" } },
+    { label: { zh: "开源", en: "Open Source" }, value: { zh: "22 个公开仓库 · 140+ Stars", en: "22 public repos · 140+ Stars" } }
   ],
 
   /* 技能栈:可自由增删分组与条目 */
@@ -36,11 +37,19 @@ SITE.about = {
     groups: [
       {
         label: { zh: "语言", en: "Languages" },
-        items: ["Python", "C++"]
+        items: ["Python", "C++", "Bash", "JavaScript"]
       },
       {
-        label: { zh: "领域", en: "Domains" },
-        items: ["计算机视觉", "三维重建", "图像处理", "SLAM", "深度学习"]
+        label: { zh: "视觉与三维", en: "Vision & 3D" },
+        items: ["多视图几何", "MVS", "SLAM", "视觉定位", "点云处理", "平面重建", "OpenCV", "COLMAP"]
+      },
+      {
+        label: { zh: "工程化", en: "Engineering" },
+        items: ["Git", "Linux", "Docker", "CMake", "性能优化", "CI/CD", "技术文档"]
+      },
+      {
+        label: { zh: "学习方向", en: "Learning" },
+        items: ["深度学习", "三维重建前沿"]
       }
     ]
   }

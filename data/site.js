@@ -12,7 +12,10 @@ window.SITE = window.SITE || {};
 
 SITE.site = {
   /* 浏览器标签页标题 / Browser tab title */
-  pageTitle: { zh: "Ranyu · 个人主页", en: "Ranyu · Portfolio" },
+  pageTitle: {
+    zh: "Ranyu (YIMY) · 计算机视觉 / 三维重建",
+    en: "Ranyu (YIMY) · Computer Vision & 3D Reconstruction"
+  },
 
   /* 顶部左上角品牌名(主页锚点) */
   brand: "Ranyu",
@@ -20,10 +23,10 @@ SITE.site = {
 
   /* 页脚。{year} 会自动替换为当前年份 */
   footer: {
-    copyright: "© {year} Ranyu · Ranyu",
+    copyright: "© {year} Ranyu (YIMY). All rights reserved.",
     note: {
-      zh: "用 HTML / CSS / JS 手写 · 托管于 GitHub Pages",
-      en: "Hand-crafted with HTML / CSS / JS · Hosted on GitHub Pages"
+      zh: "计算机视觉 / 三维重建 · 使用原生 HTML / CSS / JavaScript 构建",
+      en: "Computer Vision & 3D Reconstruction · Built with vanilla HTML / CSS / JavaScript"
     }
   }
 };

@@ -4,11 +4,48 @@
   <meta charset="UTF-8" />
   <script>document.documentElement.classList.add("js");</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>YIMY · 个人主页 | YimY · Portfolio</title>
-  <meta name="description" content="YIMY的个人主页:个人简介、主要代码项目与贡献、知识成果等。" />
-  <meta name="author" content="YIMY" />
+  <title>Ranyu (YIMY) · 计算机视觉 / 三维重建</title>
+  <meta name="description" content="Ranyu (YIMY) 的个人主页 — 计算机视觉与三维重建工程师，专注多视图几何、密集匹配点云处理、纯视觉定位与 C++/Python 工程化落地。" />
+  <meta name="keywords" content="Ranyu, YIMY, 计算机视觉, 三维重建, 视觉定位, SLAM, 点云处理, MVS, COLMAP, C++, Python, 个人主页" />
+  <meta name="author" content="Ranyu (YIMY)" />
+  <meta name="theme-color" content="#2563eb" />
+  <link rel="canonical" href="https://r-yimy.github.io/" />
+  <link rel="me" href="https://github.com/R-YimY" />
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="css/style.css" />
+
+  <!-- Open Graph / Social -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Ranyu (YIMY) · 计算机视觉 / 三维重建" />
+  <meta property="og:description" content="计算机视觉与三维重建工程师，专注 MVS、点云处理、视觉定位与工程化落地。" />
+  <meta property="og:url" content="https://r-yimy.github.io/" />
+  <meta property="og:image" content="https://r-yimy.github.io/assets/avatar.svg" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Ranyu (YIMY) · 计算机视觉 / 三维重建" />
+  <meta name="twitter:description" content="计算机视觉与三维重建工程师，专注 MVS、点云处理、视觉定位与工程化落地。" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Ranyu (YIMY)",
+    "url": "https://r-yimy.github.io/",
+    "image": "https://r-yimy.github.io/assets/avatar.svg",
+    "jobTitle": "Computer Vision Engineer",
+    "email": "1547823315@qq.com",
+    "knowsAbout": [
+      "Computer Vision",
+      "3D Reconstruction",
+      "Visual Localization",
+      "SLAM",
+      "Point Cloud Processing",
+      "MVS",
+      "C++",
+      "Python"
+    ],
+    "sameAs": ["https://github.com/R-YimY"]
+  }
+  </script>
 </head>
 <body>
   <a class="skip-link" href="#main">
@@ -26,13 +63,30 @@
       <nav class="nav" id="primary-nav" aria-label="主导航 / Primary">
         <ul>
           <li><a href="#about"><span lang="zh">关于</span><span lang="en">About</span></a></li>
+          <li><a href="#experience"><span lang="zh">经历</span><span lang="en">Experience</span></a></li>
           <li><a href="#projects"><span lang="zh">项目</span><span lang="en">Projects</span></a></li>
-          <li><a href="#achievements"><span lang="zh">知识成果</span><span lang="en">Achievements</span></a></li>
+          <li><a href="#contributions"><span lang="zh">开源</span><span lang="en">Open Source</span></a></li>
+          <li><a href="#achievements"><span lang="zh">成果</span><span lang="en">Achievements</span></a></li>
           <li><a href="#contact"><span lang="zh">联系</span><span lang="en">Contact</span></a></li>
         </ul>
       </nav>
 
       <div class="header-actions">
+        <button class="btn-ghost btn-print" id="print-resume" type="button"
+                data-action="print" aria-label="打印简历 / Print Resume">
+          <svg viewBox="0 0 24 24" width="17" height="17" aria-hidden="true">
+            <g fill="none" stroke="currentColor" stroke-width="1.8"
+               stroke-linecap="round" stroke-linejoin="round">
+              <path d="M7 9V4h10v5" />
+              <path d="M7 18H5a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+              <path d="M7 14h10v6H7z" />
+            </g>
+            <circle cx="17.5" cy="11.5" r="1" fill="currentColor" />
+          </svg>
+          <span class="btn-print-text">
+            <span lang="zh">打印简历</span><span lang="en">Print Resume</span>
+          </span>
+        </button>
         <button class="btn-ghost" id="lang-toggle" type="button"
                 aria-label="切换语言 / Switch language">
           <span id="lang-toggle-label">EN</span>
@@ -84,18 +138,28 @@
       <div class="container" id="about-root"></div>
     </section>
 
+    <!-- ======================= 工作与研究经历 ======================= -->
+    <section class="section section-alt" id="experience">
+      <div class="container" id="experience-root"></div>
+    </section>
+
     <!-- ======================= 主要代码项目 ======================= -->
-    <section class="section section-alt" id="projects">
+    <section class="section" id="projects">
       <div class="container" id="projects-root"></div>
     </section>
 
+    <!-- ======================= 开源与社区贡献 ======================= -->
+    <section class="section section-alt" id="contributions">
+      <div class="container" id="contributions-root"></div>
+    </section>
+
     <!-- ======================= 知识成果 ======================= -->
-    <section class="section section-alt" id="achievements">
+    <section class="section" id="achievements">
       <div class="container" id="achievements-root"></div>
     </section>
 
     <!-- ======================= 联系 ======================= -->
-    <section class="section" id="contact">
+    <section class="section section-alt" id="contact">
       <div class="container" id="contact-root"></div>
     </section>
   </main>
@@ -122,6 +186,7 @@
   <script src="data/site.js"></script>
   <script src="data/hero.js"></script>
   <script src="data/about.js"></script>
+  <script src="data/experience.js"></script>
   <script src="data/projects.js"></script>
   <script src="data/contributions.js"></script>
   <script src="data/achievements.js"></script>

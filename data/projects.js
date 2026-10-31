@@ -65,7 +65,7 @@ SITE.projects = {
       name: "Visual-Localization",
       emoji: "🎯",
       role: { zh: "核心开发", en: "Core Developer" },
-      period: "2024 — 至今",
+      period: { zh: "2024 — 至今", en: "2024 — Present" },
       desc: {
         zh: "面向复杂环境的纯视觉定位系统,融合图像检索、特征匹配与几何验证,输出高精度位姿估计。",
         en: "A pure-visual localization system for complex environments, combining image retrieval, feature matching, and geometric verification for accurate pose estimation."
@@ -98,7 +98,7 @@ SITE.projects = {
       name: "Multi-trajectory Visual Mapping",
       emoji: "🗺️",
       role: { zh: "算法开发", en: "Algorithm Developer" },
-      period: "2025 — 至今",
+      period: { zh: "2025 — 至今", en: "2025 — Present" },
       desc: {
         zh: "面向多轨迹众包采集数据的视觉地面要素三维重建系统,输出高精度、高完整性的三维成果。",
         en: "A visual ground-feature 3D reconstruction system for multi-trajectory crowdsourced data, producing high-precision and high-completeness results."

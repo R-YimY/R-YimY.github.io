@@ -11,6 +11,19 @@
 
   /* -------------------- 工具函数 -------------------- */
 
+  // 当前语言(以 <html data-lang> 为准,默认英文)
+  function currentLang() {
+    return document.documentElement.getAttribute("data-lang") === "zh" ? "zh" : "en";
+  }
+
+  // 双语 → 当前语言的纯文本(用于 title / alt 等无法用 CSS 切换的属性)
+  function current(v) {
+    if (v == null) return "";
+    if (typeof v === "string") return v;
+    var lang = currentLang();
+    return (lang === "zh" ? v.zh : v.en) || v.zh || v.en || "";
+  }
+
   // 双语 → 两个 <span lang> 文本(CSS 根据当前语言显示其中一个)
   function bi(v) {
     if (v == null) return "";
@@ -22,7 +35,7 @@
     return '<span lang="zh">' + zh + '</span><span lang="en">' + en + "</span>";
   }
 
-  // 双语 → 纯文本(用于 title / alt 等属性场景)
+  // 双语 → 纯文本(保留给外部调用;页面属性请用 current)
   function plain(v) {
     if (v == null) return "";
     if (typeof v === "string") return v;
@@ -80,7 +93,7 @@
   function renderSite() {
     var s = S.site || {};
 
-    if (s.pageTitle) document.title = plain(s.pageTitle);
+    if (s.pageTitle) document.title = current(s.pageTitle);
 
     var brand = root("brand-name");
     if (brand) {
@@ -131,7 +144,10 @@
         (socials ? '<ul class="social" aria-label="Social links">' + socials + "</ul>" : "") +
       "</div>" +
       '<div class="hero-visual reveal">' +
-        '<img class="avatar" src="' + esc(h.avatar) + '" width="260" height="260" alt="' + esc(plain(h.avatarAlt)) + '" />' +
+        '<img class="avatar" src="' + esc(h.avatar) + '" width="260" height="260"' +
+          ' alt="' + esc(current(h.avatarAlt)) + '"' +
+          ' data-alt-zh="' + esc(typeof h.avatarAlt === "string" ? h.avatarAlt : (h.avatarAlt && h.avatarAlt.zh) || "") + '"' +
+          ' data-alt-en="' + esc(typeof h.avatarAlt === "string" ? h.avatarAlt : (h.avatarAlt && h.avatarAlt.en) || "") + '" />' +
         (h.badge
           ? '<div class="hero-badge"><span class="pulse" aria-hidden="true"></span>' + bi(h.badge) + "</div>"
           : "") +
@@ -155,7 +171,7 @@
 
     var groups = ((a.skills && a.skills.groups) || []).map(function (g) {
       var chips = (g.items || []).map(function (i) {
-        return '<li class="chip">' + esc(i) + "</li>";
+        return '<li class="chip">' + bi(i) + "</li>";
       }).join("");
       return (
         '<div class="skill-group">' +
@@ -208,7 +224,7 @@
       return (
         '<article class="exp-item reveal">' +
           '<div class="exp-meta">' +
-            '<span class="exp-period">' + esc(it.period) + "</span>" +
+            '<span class="exp-period">' + bi(it.period) + "</span>" +
             '<span class="exp-type exp-type-' + type + '">' + bi(typeLabel(type)) + "</span>" +
           "</div>" +
           '<div class="exp-main">' +
@@ -240,7 +256,7 @@
     return (
       '<figure class="card-media" data-project="' + esc(projectName || "") + '">' +
         '<img src="' + esc(image.src) + '"' +
-          ' alt="' + esc(plain(image.alt)) + '"' +
+          ' alt="' + esc(current(image.alt)) + '"' +
           ' data-alt-zh="' + esc(zhAlt) + '"' +
           ' data-alt-en="' + esc(enAlt) + '"' +
           ' loading="lazy" decoding="async"' +
@@ -263,7 +279,7 @@
     var cards = (p.items || []).map(function (it) {
       var meta = [];
       if (it.role) meta.push('<span class="card-meta-item">' + bi(it.role) + "</span>");
-      if (it.period) meta.push('<span class="card-meta-item">' + esc(it.period) + "</span>");
+      if (it.period) meta.push('<span class="card-meta-item">' + bi(it.period) + "</span>");
       var metaHtml = meta.length
         ? '<p class="card-meta">' + meta.join('<span class="dot" aria-hidden="true">·</span>') + "</p>"
         : "";
@@ -400,6 +416,40 @@
     render("contact-root", head(c) + '<div class="contact-grid reveal">' + items + "</div>");
   }
 
+  /* -------------------- 语言相关的页面属性 -------------------- */
+  function setMeta(selector, value) {
+    if (value == null) return;
+    var el = document.querySelector(selector);
+    if (el) el.setAttribute("content", value);
+  }
+
+  // 同步 title / meta / alt 等不能用 CSS 切换的属性
+  function syncLangAttrs() {
+    var s = S.site || {};
+    var seo = s.seo || {};
+    var title = current(s.pageTitle);
+    var desc = current(seo.description);
+    var keywords = current(seo.keywords);
+
+    if (title) document.title = title;
+    setMeta('meta[name="description"]', desc);
+    setMeta('meta[name="keywords"]', keywords);
+    setMeta('meta[property="og:title"]', title);
+    setMeta('meta[name="twitter:title"]', title);
+    setMeta('meta[property="og:description"]', desc);
+    setMeta('meta[name="twitter:description"]', desc);
+
+    Array.prototype.forEach.call(
+      document.querySelectorAll("img[data-alt-zh], img[data-alt-en]"),
+      function (img) {
+        var zh = img.getAttribute("data-alt-zh") || "";
+        var en = img.getAttribute("data-alt-en") || "";
+        var alt = currentLang() === "zh" ? (zh || en) : (en || zh);
+        if (alt) img.setAttribute("alt", alt);
+      }
+    );
+  }
+
   /* -------------------- 执行渲染 -------------------- */
   function renderAll() {
     renderSite();
@@ -410,10 +460,16 @@
     renderContributions();
     renderAchievements();
     renderContact();
+    syncLangAttrs();
   }
 
   renderAll();
 
   // 供其它模块(如语言切换)复用
-  window.SITE_RENDER = { renderAll: renderAll, bi: bi, plain: plain };
+  window.SITE_RENDER = {
+    renderAll: renderAll,
+    syncLangAttrs: syncLangAttrs,
+    bi: bi,
+    plain: plain
+  };
 })();

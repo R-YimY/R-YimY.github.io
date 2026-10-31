@@ -21,7 +21,7 @@ SITE.about = {
 
   /* 关键信息小块 */
   facts: [
-    { label: { zh: "所在地", en: "Location" }, value: { zh: "中国 · 重庆", en: "ChongQing, China" } },
+    { label: { zh: "所在地", en: "Location" }, value: { zh: "中国 · 重庆", en: "Chongqing, China" } },
     { label: { zh: "经验", en: "Experience" }, value: { zh: "3+ 年", en: "3+ years" } },
     { label: { zh: "关注领域", en: "Focus" }, value: { zh: "三维重建 · 视觉定位 · 点云处理", en: "3D Reconstruction · Visual Localization · Point Clouds" } }
   ],
@@ -36,15 +36,35 @@ SITE.about = {
       },
       {
         label: { zh: "视觉与三维", en: "Vision & 3D" },
-        items: ["多视图几何", "MVS", "SLAM", "视觉定位", "点云处理", "平面重建", "OpenCV", "COLMAP"]
+        items: [
+          { zh: "多视图几何", en: "Multi-view Geometry" },
+          "MVS",
+          "SLAM",
+          { zh: "视觉定位", en: "Visual Localization" },
+          { zh: "点云处理", en: "Point Cloud Processing" },
+          { zh: "平面重建", en: "Planar Reconstruction" },
+          "OpenCV",
+          "COLMAP"
+        ]
       },
       {
         label: { zh: "工程化", en: "Engineering" },
-        items: ["Git", "Linux", "Docker", "CMake", "性能优化", "CI/CD", "技术文档"]
+        items: [
+          "Git",
+          "Linux",
+          "Docker",
+          "CMake",
+          { zh: "性能优化", en: "Performance Optimization" },
+          "CI/CD",
+          { zh: "技术文档", en: "Technical Documentation" }
+        ]
       },
       {
         label: { zh: "学习方向", en: "Learning" },
-        items: ["深度学习", "三维重建前沿"]
+        items: [
+          { zh: "深度学习", en: "Deep Learning" },
+          { zh: "三维重建前沿", en: "Frontiers of 3D Reconstruction" }
+        ]
       }
     ]
   }

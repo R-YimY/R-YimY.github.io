@@ -21,6 +21,18 @@ SITE.site = {
   brand: "Ranyu",
   brandEn: "YIMY",
 
+  /* 搜索引擎 / 社交平台元信息(随语言切换更新) */
+  seo: {
+    description: {
+      zh: "Ranyu (YIMY) 的个人主页 — 计算机视觉与三维重建工程师,专注多视图几何、密集匹配点云处理、纯视觉定位与 C++/Python 工程化落地。",
+      en: "Ranyu (YIMY)'s personal homepage — a computer vision and 3D reconstruction engineer focused on multi-view geometry, dense point cloud processing, visual localization, and C++/Python engineering."
+    },
+    keywords: {
+      zh: "Ranyu, YIMY, 计算机视觉, 三维重建, 视觉定位, SLAM, 点云处理, MVS, COLMAP, C++, Python, 个人主页",
+      en: "Ranyu, YIMY, computer vision, 3D reconstruction, visual localization, SLAM, point cloud processing, MVS, COLMAP, C++, Python, portfolio"
+    }
+  },
+
   /* 页脚。{year} 会自动替换为当前年份 */
   footer: {
     copyright: "© {year} Ranyu (YIMY). All rights reserved.",

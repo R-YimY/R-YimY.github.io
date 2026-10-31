@@ -7,7 +7,7 @@ Personal homepage and resume-style portfolio of **Ranyu (YIMY)** — a computer 
 ## Highlights
 
 - Resume-oriented structure: summary, experience, featured projects, open-source impact, achievements, and contact.
-- Fully bilingual (Chinese / English) with persisted language preference.
+- Fully bilingual (Chinese / English), English by default, with persisted language preference.
 - Light / dark theme with system preference detection.
 - Data-driven content: update `data/*.js` without touching layout code.
 - Project cards with role, timeline, technical highlights, tags, and external links.

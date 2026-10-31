@@ -27,11 +27,11 @@ SITE.achievements = {
         },
         {
           zh: "点云数据处理方法、装置、电子设备及存储介质 · 第一发明人 · 状态:实审",
-          en: "A point cloud vectorization method · First Inventor · Status: under substantive examination"
+          en: "Point cloud data processing method, device, electronic device, and storage medium · First Inventor · Status: under substantive examination"
         },
         {
           zh: "路面模型的构建方法、装置、系统、设备及存储介质 · 第一发明人 · 状态:实审",
-          en: "A road surface model construction method, device, system, device, and storage medium · First Inventor · Status: under substantive examination"
+          en: "Road surface model construction method, device, system, equipment, and storage medium · First Inventor · Status: under substantive examination"
         },
         {
           zh: "共视匹配方法、装置、设备、存储介质及程序产品 · 第一发明人 · 状态:实审",
@@ -43,7 +43,7 @@ SITE.achievements = {
         },
         {
           zh: "增量式三维重建的方法、装置、设备及存储介质 · 第一发明人 · 状态:实审",
-          en: "An incremental 3D reconstruction method, device, equipment, and storage medium · First Inventor· Status: under substantive examination"
+          en: "Incremental 3D reconstruction method, device, equipment, and storage medium · First Inventor · Status: under substantive examination"
         },
         {
           zh: "基于单目相机的三维场景重建方法及装置 · 第一发明人 · 状态:实审",

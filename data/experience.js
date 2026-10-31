@@ -18,7 +18,7 @@ SITE.experience = {
   items: [
     {
       type: "work",
-      period: "2023 — 至今",
+      period: { zh: "2023 — 至今", en: "2023 — Present" },
       role: { zh: "三维视觉工程师 · 远程", en: "3D Vision Engineer · Remote" },
       org: { zh: "计算机视觉 / 三维重建", en: "Computer Vision / 3D Reconstruction" },
       location: { zh: "远程", en: "Remote" },
@@ -48,7 +48,7 @@ SITE.experience = {
     },
     {
       type: "education",
-      period: "武汉大学",
+      period: { zh: "武汉大学", en: "Wuhan University" },
       role: { zh: "计算机视觉方向 · 学生研究者", en: "Computer Vision · Student Researcher" },
       org: { zh: "武汉大学", en: "Wuhan University" },
       location: { zh: "中国 · 武汉", en: "Wuhan, China" },

@@ -6,7 +6,8 @@
   "use strict";
 
   var root = document.documentElement;
-  var STORAGE_LANG = "homepage-lang";
+  // 键名升级:旧访客的「中文」偏好不会覆盖新的英文默认值
+  var STORAGE_LANG = "homepage-lang-v2";
   var STORAGE_THEME = "homepage-theme";
 
   /* ---------------------------------------------------------
@@ -28,6 +29,9 @@
       );
     }
     try { localStorage.setItem(STORAGE_LANG, lang); } catch (e) {}
+    if (window.SITE_RENDER && typeof window.SITE_RENDER.syncLangAttrs === "function") {
+      window.SITE_RENDER.syncLangAttrs();
+    }
     if (typeof refreshMediaLabels === "function") refreshMediaLabels(lang);
     if (typeof syncAchieveScroll === "function") syncAchieveScroll();
   }
@@ -52,9 +56,8 @@
   function initLang() {
     var saved = null;
     try { saved = localStorage.getItem(STORAGE_LANG); } catch (e) {}
-    if (!saved) {
-      saved = (navigator.language || "zh").toLowerCase().indexOf("zh") === 0 ? "zh" : "en";
-    }
+    // 默认英文;用户手动切换后记住其选择
+    if (!saved) saved = "en";
     applyLang(saved);
   }
 
